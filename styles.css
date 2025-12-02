@@ -1,14 +1,24 @@
 :root {
-  --bg: #050816;
-  --bg-alt: #0b1020;
-  --card: #111827;
-  --accent: #4f46e5;
-  --accent-soft: rgba(79, 70, 229, 0.12);
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --border: #1f2937;
-  --pill-bg: #111827;
+  /* Backgrounds */
+  --bg: #ffffff;
+  --bg-alt: #f5f0ff; /* very light lavender */
+
+  /* Cards */
+  --card: #ffffff;
+  --border: #e4d7ff;
+
+  /* Accent Purples */
+  --accent: #6a38ff;       /* main purple */
+  --accent-soft: #f3eaff;  /* soft lavender */
+
+  /* Text */
+  --text: #1a1a1a;         /* blackish */
+  --muted: #6b6b6b;        /* soft grey */
+
+  /* Pills */
+  --pill-bg: #f4edff;
 }
+
 
 *,
 *::before,
