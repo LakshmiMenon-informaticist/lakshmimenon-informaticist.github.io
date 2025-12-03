@@ -150,45 +150,50 @@ p {
 .hero::after {
   content: "";
   position: absolute;
-  z-index: -1;               /* stays behind text + image */
+  z-index: -1;               /* stay behind content */
   border-radius: 999px;
-  filter: blur(40px);
-  opacity: 0.6;
+  filter: blur(50px);
   pointer-events: none;
 }
 
-/* Left glow */
+/* Left glow – more visible under text */
 .hero::before {
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle at center, rgba(106, 56, 255, 0.35), rgba(243, 234, 255, 0));
-  top: -80px;
-  left: -40px;
-  animation: floatGlow1 18s ease-in-out infinite alternate;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle at center,
+    rgba(106, 56, 255, 0.45),
+    rgba(243, 234, 255, 0)
+  );
+  top: -40px;
+  left: -60px;
+  animation: floatGlow1 16s ease-in-out infinite alternate;
 }
 
-/* Right glow */
+/* Right glow – behind the image */
 .hero::after {
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle at center, rgba(180, 120, 255, 0.3), rgba(243, 234, 255, 0));
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle at center,
+    rgba(180, 120, 255, 0.4),
+    rgba(243, 234, 255, 0)
+  );
   bottom: -120px;
-  right: -60px;
-  animation: floatGlow2 22s ease-in-out infinite alternate;
+  right: -40px;
+  animation: floatGlow2 20s ease-in-out infinite alternate;
 }
 
-/* Keyframes for slow movement */
 @keyframes floatGlow1 {
   0%   { transform: translate(0, 0); }
-  50%  { transform: translate(40px, 30px); }
-  100% { transform: translate(10px, 60px); }
+  50%  { transform: translate(60px, 40px); }
+  100% { transform: translate(20px, 80px); }
 }
 
 @keyframes floatGlow2 {
   0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-30px, -40px); }
-  100% { transform: translate(-60px, -10px); }
+  50%  { transform: translate(-50px, -50px); }
+  100% { transform: translate(-80px, -10px); }
 }
+
 
 
 .hero-inner {
