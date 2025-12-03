@@ -28,11 +28,18 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
 }
+
+h1, h2, h3 {
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 
 /* Layout helpers */
 
