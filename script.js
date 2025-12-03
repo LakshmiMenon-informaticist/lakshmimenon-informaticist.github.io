@@ -32,48 +32,50 @@ if (slider) {
   }
 }
 // --- Typewriter effect below "Hi, I'm Parvati." ---
-const roles = [
-  "Clinical informaticist",
-  "Pharmacist",
-  "Product Manager",
-  "Independent Researcher",
-  "Risk taker",
-  "Nature Lover"
-];
+document.addEventListener("DOMContentLoaded", () => {
+  const roles = [
+    "Clinical informaticist",
+    "Pharmacist",
+    "Product Manager",
+    "Independent researcher",
+    "Risk taker",
+    "Nature lover"
+  ];
 
-const typedSpan = document.getElementById("role-typed");
+  const typedSpan = document.getElementById("role-typed");
+  if (!typedSpan) return;
 
-if (typedSpan) {
   let roleIndex = 0;
   let charIndex = 0;
-  let typing = true;
+  let isDeleting = false;
 
-  function typeEffect() {
+  function typeLoop() {
     const currentRole = roles[roleIndex];
 
-    if (typing) {
-      typedSpan.textContent = currentRole.slice(0, charIndex + 1);
+    if (!isDeleting) {
+      // typing
       charIndex++;
-
+      typedSpan.textContent = currentRole.slice(0, charIndex);
       if (charIndex === currentRole.length) {
-        typing = false;
-        setTimeout(typeEffect, 1000);
+        isDeleting = true;
+        setTimeout(typeLoop, 1000); // pause at full word
         return;
       }
     } else {
-      typedSpan.textContent = currentRole.slice(0, charIndex - 1);
+      // deleting
       charIndex--;
-
+      typedSpan.textContent = currentRole.slice(0, charIndex);
       if (charIndex === 0) {
-        typing = true;
+        isDeleting = false;
         roleIndex = (roleIndex + 1) % roles.length;
       }
     }
 
-    setTimeout(typeEffect, typing ? 80 : 50);
+    const delay = isDeleting ? 60 : 90;
+    setTimeout(typeLoop, delay);
   }
 
-  typeEffect();
-}
+  typeLoop();
+});
 
 
