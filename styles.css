@@ -216,6 +216,26 @@ p {
   padding-left: 18px;
   color: var(--muted);
 }
+.hero-roles {
+  font-size: 1.2rem;
+  margin: 4px 0 14px;
+  color: var(--muted);
+}
+
+.hero-roles #role-typed {
+  color: var(--accent);
+  font-weight: 600;
+  border-right: 2px solid var(--accent);
+  padding-right: 4px;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0% { border-color: transparent; }
+  50% { border-color: var(--accent); }
+  100% { border-color: transparent; }
+}
+
 
 /* Buttons */
 
