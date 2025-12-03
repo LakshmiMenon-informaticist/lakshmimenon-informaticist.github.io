@@ -31,5 +31,49 @@ if (slider) {
     }, 4000);
   }
 }
+// --- Typewriter effect below "Hi, I'm Parvati." ---
+const roles = [
+  "Clinical informaticist",
+  "Pharmacist",
+  "Product Manager",
+  "Independent Researcher",
+  "Risk taker",
+  "Nature Lover"
+];
+
+const typedSpan = document.getElementById("role-typed");
+
+if (typedSpan) {
+  let roleIndex = 0;
+  let charIndex = 0;
+  let typing = true;
+
+  function typeEffect() {
+    const currentRole = roles[roleIndex];
+
+    if (typing) {
+      typedSpan.textContent = currentRole.slice(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex === currentRole.length) {
+        typing = false;
+        setTimeout(typeEffect, 1000);
+        return;
+      }
+    } else {
+      typedSpan.textContent = currentRole.slice(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex === 0) {
+        typing = true;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+
+    setTimeout(typeEffect, typing ? 80 : 50);
+  }
+
+  typeEffect();
+}
 
 
