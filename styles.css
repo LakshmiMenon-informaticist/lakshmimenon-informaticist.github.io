@@ -462,3 +462,61 @@ p {
     padding: 56px 0;
   }
 }
+
+/* Experience polish */
+
+.timeline {
+  border-left: 1px solid rgba(55, 65, 81, 0.12);
+  margin-left: 14px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.timeline-content.card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft gradient strip on the left of each card */
+.timeline-content.card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #4f46e5, #a855f7);
+  opacity: 0.8;
+}
+
+/* Push inner content so it doesn't sit under the strip */
+.timeline-content.card > * {
+  margin-left: 6px;
+}
+
+.role-divider {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 14px 0 10px;
+}
+
+.role-subtitle {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* Reveal-on-scroll animation */
+
+.timeline-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.timeline-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
