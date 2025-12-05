@@ -32,7 +32,47 @@ body {
   background: radial-gradient(circle at top, #f7f2ff 0, #ffffff 55%);
   color: var(--text);
   line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
 }
+
+/* Global floating glows behind the whole page */
+body::before,
+body::after {
+  content: "";
+  position: fixed;           /* stay put while you scroll */
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+/* Left glow – near top / experience */
+body::before {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle at center,
+    rgba(106, 56, 255, 0.45),
+    rgba(243, 234, 255, 0)
+  );
+  top: -40px;
+  left: -60px;
+  animation: floatGlow1 16s ease-in-out infinite alternate;
+}
+
+/* Right glow – near hero image / lower sections */
+body::after {
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle at center,
+    rgba(180, 120, 255, 0.4),
+    rgba(243, 234, 255, 0)
+  );
+  bottom: -120px;
+  right: -40px;
+  animation: floatGlow2 20s ease-in-out infinite alternate;
+}
+
 
 /* Make all sections transparent to match hero background */
 section {
@@ -61,7 +101,7 @@ h1, h2, h3 {
 }
 
 .section-alt {
-  background: none;
+  background: transparent;
 }
 
 h1, h2, h3 {
@@ -149,42 +189,6 @@ p {
 }
 
 
-/* Animated background glows behind hero */
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  z-index: -1;               /* stay behind content */
-  border-radius: 999px;
-  filter: blur(50px);
-  pointer-events: none;
-}
-
-/* Left glow – more visible under text */
-.hero::before {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle at center,
-    rgba(106, 56, 255, 0.45),
-    rgba(243, 234, 255, 0)
-  );
-  top: -40px;
-  left: -60px;
-  animation: floatGlow1 16s ease-in-out infinite alternate;
-}
-
-/* Right glow – behind the image */
-.hero::after {
-  width: 460px;
-  height: 460px;
-  background: radial-gradient(circle at center,
-    rgba(180, 120, 255, 0.4),
-    rgba(243, 234, 255, 0)
-  );
-  bottom: -120px;
-  right: -40px;
-  animation: floatGlow2 20s ease-in-out infinite alternate;
-}
 
 @keyframes floatGlow1 {
   0%   { transform: translate(0, 0); }
