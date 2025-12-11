@@ -264,15 +264,15 @@ p {
 
 .hero-photos {
   position: relative;
-  width: 480px;      /* bigger cluster */
-  height: 340px;
+  width: 520px;      /* bigger cluster */
+  height: 400px;
   transform: translateX(-40px); /* nudge closer to the text */
 }
 
 /* Base styling for all photos */
 .hero-photo {
   position: absolute;
-  width: 58%;                 /* bigger images */
+  width: 62%;                 /* bigger images */
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 22px;
@@ -286,30 +286,30 @@ p {
 
 /* main photo: middle-right */
 .photo-main {
-  top: 16%;
-  left: 52%;
-  z-index: 3;
+  top: 22%;
+  left: 55%;
+  z-index: 2;
 }
 
 /* top photo: upper-left of the main */
 .photo-top {
-  top: 0%;
-  left: 18%;
+  top: -4%;
+  left: 10%;
   z-index: 2;
 }
 
 /* bottom-left photo */
 .photo-bottom-left {
-  bottom: -6%;
-  left: 4%;
+  bottom: 4%;
+  left: 0%;
   z-index: 1;
 }
 
 /* bottom-right photo */
 .photo-bottom-right {
-  bottom: -4%;
-  right: -2%;
-  z-index: 2;
+  bottom: 0%;
+  right: -4%;
+  z-index: 3;
 }
 
 /* Bounce effect on hover */
