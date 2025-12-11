@@ -86,3 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
   items.forEach(item => observer.observe(item));
 });
 
+// --- Photo proximity bounce effect ---
+document.addEventListener("mousemove", (e) => {
+  document.querySelectorAll(".hero-photo").forEach(photo => {
+    const rect = photo.getBoundingClientRect();
+    const x = e.clientX - (rect.left + rect.width / 2);
+    const y = e.clientY - (rect.top + rect.height / 2);
+    const dist = Math.sqrt(x*x + y*y);
+
+    // distance threshold (adjust for sensitivity)
+    if (dist < 160) {
+      const angle = Math.atan2(y, x);
+      const offsetX = Math.cos(angle) * -14;
+      const offsetY = Math.sin(angle) * -14;
+
+      photo.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    } else {
+      photo.style.transform = "";
+    }
+  });
+});
