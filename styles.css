@@ -254,83 +254,73 @@ p {
   justify-content: center;
   align-items: center;
 }
+/* Right side: floating photo cluster */
+
+.hero-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .hero-photos {
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: 480px;      /* bigger cluster */
+  height: 340px;
+  transform: translateX(-40px); /* nudge closer to the text */
 }
 
 /* Base styling for all photos */
 .hero-photo {
   position: absolute;
-  width: 46%;
+  width: 58%;                 /* bigger images */
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 22px;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
   border: 1px solid var(--border);
   background: var(--accent-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Center photo */
+/* Semi-circle-ish layout "cupping" the text */
+
+/* main photo: middle-right */
 .photo-main {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 16%;
+  left: 52%;
   z-index: 3;
-  animation: floatCenter 10s ease-in-out infinite alternate;
 }
 
-/* Top photo – “cupping” from above */
+/* top photo: upper-left of the main */
 .photo-top {
-  top: -6%;
-  left: 60%;
-  transform: translateX(-50%);
+  top: 0%;
+  left: 18%;
   z-index: 2;
-  animation: floatTop 11s ease-in-out infinite alternate;
 }
 
-/* Bottom-left photo */
+/* bottom-left photo */
 .photo-bottom-left {
-  bottom: -4%;
-  left: 6%;
+  bottom: -6%;
+  left: 4%;
   z-index: 1;
-  animation: floatBottomLeft 13s ease-in-out infinite alternate;
 }
 
-/* Bottom-right photo */
+/* bottom-right photo */
 .photo-bottom-right {
   bottom: -4%;
-  right: 6%;
-  z-index: 1;
-  animation: floatBottomRight 12s ease-in-out infinite alternate;
+  right: -2%;
+  z-index: 2;
 }
+
+/* Bounce effect on hover */
+.hero-photo:hover {
+  transform: translateY(-16px);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.30);
+}
+
 
 /* Floating keyframes */
-@keyframes floatCenter {
-  0%   { transform: translate(-50%, -50%) translateY(0); }
-  50%  { transform: translate(-50%, -52%) translateY(-10px); }
-  100% { transform: translate(-50%, -48%) translateY(6px); }
-}
 
-@keyframes floatTop {
-  0%   { transform: translateX(-50%) translateY(0); }
-  50%  { transform: translateX(-50%) translateY(8px); }
-  100% { transform: translateX(-50%) translateY(-4px); }
-}
-
-@keyframes floatBottomLeft {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px) translateX(-4px); }
-  100% { transform: translateY(6px) translateX(2px); }
-}
-
-@keyframes floatBottomRight {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-8px) translateX(4px); }
-  100% { transform: translateY(4px) translateX(-2px); }
-}
 
 @keyframes blinkCursor {
   0% { border-color: transparent; }
