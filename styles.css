@@ -272,15 +272,24 @@ p {
 /* Base styling for all photos */
 .hero-photo {
   position: absolute;
-  width: 62%;                 /* bigger images */
+  width: 58%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 22px;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
   border: 1px solid var(--border);
   background: var(--accent-soft);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  /* NEW transition: no transform here because JS handles movement */
+  transition: box-shadow 0.25s ease, filter 0.25s ease;
 }
+
+/* hover only changes shadow + brightness */
+.hero-photo:hover {
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.32);
+  filter: brightness(1.03);
+}
+
 
 /* Semi-circle-ish layout "cupping" the text */
 
