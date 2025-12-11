@@ -656,3 +656,82 @@ p {
   font-weight: 500;
   font-size: 0.9rem;
 }
+/* --- Minimal top navigation --- */
+
+.site-header {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 0;
+  background: transparent;
+  z-index: 20;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+}
+
+/* Logo stays small and subtle */
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: radial-gradient(circle at top, #4f46e5, #1f2937);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f9fafb;
+}
+
+/* Force nav to show on all sizes (override earlier "display: none") */
+.site-header .nav {
+  display: flex !important;
+  gap: 18px;
+  font-size: 0.9rem;
+}
+
+/* Links: subtle, no bar */
+.site-header .nav a {
+  color: var(--muted);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.18s ease;
+}
+
+/* Underline on hover */
+.site-header .nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.site-header .nav a:hover {
+  color: var(--text);
+}
+
+.site-header .nav a:hover::after {
+  width: 100%;
+}
+
+/* Slightly tighter on mobile */
+@media (max-width: 768px) {
+  .site-header .nav {
+    gap: 12px;
+    font-size: 0.8rem;
+  }
+}
