@@ -63,46 +63,64 @@ document.addEventListener("DOMContentLoaded", () => {
   typeLoop();
 });
 
-// ---- Reveal timeline items on scroll ----
+// --- Smooth photo proximity effect ---
 document.addEventListener("DOMContentLoaded", () => {
-  const items = document.querySelectorAll(".timeline-item");
+  const photos = document.querySelectorAll(".hero-photo");
+  if (!photos.length) return;
 
-  if (!items.length) return;
+  let mouseX = 0;
+  let mouseY = 0;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target); // only animate once
-        }
-      });
-    },
-    {
-      threshold: 0.15
-    }
-  );
-
-  items.forEach(item => observer.observe(item));
-});
-
-// --- Photo proximity bounce effect ---
-document.addEventListener("mousemove", (e) => {
-  document.querySelectorAll(".hero-photo").forEach(photo => {
-    const rect = photo.getBoundingClientRect();
-    const x = e.clientX - (rect.left + rect.width / 2);
-    const y = e.clientY - (rect.top + rect.height / 2);
-    const dist = Math.sqrt(x*x + y*y);
-
-    // distance threshold (adjust for sensitivity)
-    if (dist < 160) {
-      const angle = Math.atan2(y, x);
-      const offsetX = Math.cos(angle) * -14;
-      const offsetY = Math.sin(angle) * -14;
-
-      photo.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-    } else {
-      photo.style.transform = "";
-    }
+  // track mouse position
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
+
+  // per-photo state for smooth interpolation
+  const state = new Map();
+  photos.forEach((photo) => {
+    state.set(photo, { x: 0, y: 0 });
+  });
+
+  const MAX_RADIUS = 200;   // how far the “aura” around each photo extends
+  const MAX_OFFSET = 18;    // maximum distance a photo moves away
+  const SMOOTHING = 0.12;   // lower = slower, higher = snappier
+
+  function animate() {
+    photos.forEach((photo) => {
+      const rect = photo.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const dx = mouseX - centerX;
+      const dy = mouseY - centerY;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+
+      let targetX = 0;
+      let targetY = 0;
+
+      if (dist < MAX_RADIUS) {
+        // strength goes from 0 (far) → 1 (very close)
+        const strength = (MAX_RADIUS - dist) / MAX_RADIUS;
+        const angle = Math.atan2(dy, dx);
+        const offset = strength * MAX_OFFSET; // closer = bigger push
+
+        // move *away* from cursor
+        targetX = -Math.cos(angle) * offset;
+        targetY = -Math.sin(angle) * offset;
+      }
+
+      const s = state.get(photo);
+      // smooth interpolation (lerp) toward target
+      s.x += (targetX - s.x) * SMOOTHING;
+      s.y += (targetY - s.y) * SMOOTHING;
+
+      photo.style.transform = `translate(${s.x}px, ${s.y}px)`;
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 });
