@@ -255,13 +255,6 @@ p {
   align-items: center;
 }
 
-.hero-photos {
-  position: relative;
-  width: 520px;      /* bigger cluster */
-  height: 400px;
-  transform: translateX(-40px); /* nudge closer to the text */
-}
-
 /* Base styling for all photos */
 .hero-photo {
   position: absolute;
@@ -283,36 +276,32 @@ p {
   filter: brightness(1.03);
 }
 
-
-/* Semi-circle-ish layout "cupping" the text */
-
-/* main photo: middle-right */
-.photo-main {
-  top: 22%;
-  left: 55%;
-  z-index: 2;
+/* --- HERO COLLAGE (true semi-circle layout) --- */
+.hero-collage {
+  position: relative;
+  width: 560px;
+  height: 420px;
 }
 
-/* top photo: upper-left of the main */
-.photo-top {
-  top: -4%;
-  left: 10%;
-  z-index: 2;
+/* arc placement */
+.hero-collage .hero-photo:nth-child(1) {
+  transform: translate(300px, 40px);
 }
 
-/* bottom-left photo */
-.photo-bottom-left {
-  bottom: 4%;
-  left: 0%;
-  z-index: 1;
+.hero-collage .hero-photo:nth-child(2) {
+  transform: translate(200px, 0px);
 }
 
-/* bottom-right photo */
-.photo-bottom-right {
-  bottom: 0%;
-  right: -4%;
-  z-index: 3;
+.hero-collage .hero-photo:nth-child(3) {
+  transform: translate(80px, 120px);
 }
+
+.hero-collage .hero-photo:nth-child(4) {
+  transform: translate(220px, 220px);
+}
+
+
+
 
 
 /* Floating keyframes */
