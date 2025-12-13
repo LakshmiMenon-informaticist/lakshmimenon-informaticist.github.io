@@ -200,16 +200,15 @@ p {
   }
 }
 
-
 /* Hero */
 
 .hero {
   position: relative;
   padding: 80px 0 72px;
   overflow: hidden;
-  min-height: calc(100vh - 64px); /* full screen minus header height */
+  min-height: calc(100vh - 64px);
   display: flex;
-  align-items: center;           /* vertically center content */
+  align-items: center;
 }
 
 .hero-inner {
@@ -225,12 +224,7 @@ p {
 
 .hero h1 {
   font-size: 2.4rem;
-  margin-bottom: 8px;
-}
-
-.hero-subtitle {
-  font-size: 0.98rem;
-  max-width: 540px;
+  margin: 0 0 8px;
 }
 
 .hero-roles {
@@ -239,62 +233,86 @@ p {
   color: var(--muted);
 }
 
-.hero-roles #role-typed {
-  color: var(--accent);
-  font-weight: 600;
-  border-right: 2px solid var(--accent);
-  padding-right: 4px;
-  animation: blinkCursor 0.8s infinite;
+.hero-subtitle {
+  font-size: 0.98rem;
+  max-width: 540px;
+  margin: 0;
 }
 
-/* Right side: floating photo cluster */
-
-.hero-side {
-  display: flex;
+/* --- Stable photo grid beside the hero text --- */
+.hero-collage {
+  display: grid;
+  grid-template-columns: repeat(2, 260px);
+  grid-auto-rows: 170px;
+  gap: 18px;
   justify-content: center;
-  align-items: center;
+  align-content: center;
 }
 
-/* Base styling for all photos */
-.hero-photo {
-  position: absolute;
-  width: 58%;
-  aspect-ratio: 4 / 3;
+.hero-collage .hero-photo {
+  width: 260px;
+  height: 170px;
   object-fit: cover;
   border-radius: 22px;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
   border: 1px solid var(--border);
   background: var(--accent-soft);
 
-  /* NEW transition: no transform here because JS handles movement */
-  transition: box-shadow 0.25s ease, filter 0.25s ease;
+  /* force stable */
+  transform: none !important;
+  transition: none !important;
+  filter: none !important;
 }
 
-/* hover only changes shadow + brightness */
-.hero-photo:hover {
-  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.32);
-  filter: brightness(1.03);
+/* Responsive: stack text above photos on smaller screens */
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-collage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(520px, 100%);
+    margin: 0 auto;
+  }
+
+  .hero-collage .hero-photo {
+    width: 100%;
+    height: 170px;
+  }
 }
 
-.hero-collage{
-  position: relative;
-  width: 560px;
-  height: 420px;
+
+/* --- Stable hero photo grid (no motion) --- */
+.hero-collage {
+  display: grid;
+  grid-template-columns: repeat(2, 260px);
+  grid-auto-rows: 170px;
+  gap: 18px;
+  justify-content: center;
+  align-content: center;
 }
 
-/* base positions stored as variables + JS offsets */
-.hero-collage .hero-photo{
-  --tx: 0px;
-  --ty: 0px;
+.hero-collage .hero-photo {
+  width: 260px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--border);
+  background: var(--accent-soft);
 
-  transform: translate(var(--x), var(--y)) translate(var(--tx), var(--ty));
+  /* force stable */
+  position: static;
+  transform: none !important;
+  transition: none !important;
+  filter: none !important;
 }
-
-/* arc base positions */
-.hero-collage .hero-photo:nth-child(1){ --x: 300px; --y: 40px; }
-.hero-collage .hero-photo:nth-child(2){ --x: 200px; --y: 0px; }
-.hero-collage .hero-photo:nth-child(3){ --x: 80px;  --y: 120px; }
-.hero-collage .hero-photo:nth-child(4){ --x: 220px; --y: 220px; }
 
 
 
