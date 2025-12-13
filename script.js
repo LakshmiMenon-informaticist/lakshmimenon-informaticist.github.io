@@ -124,3 +124,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animate();
 });
+
+
+// Reveal timeline items on scroll
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".timeline-item");
+
+  if (!("IntersectionObserver" in window)) {
+    // Fallback: just show everything
+    items.forEach(el => el.classList.add("is-visible"));
+    return;
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target); // reveal once
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+  );
+
+  items.forEach(el => io.observe(el));
+});
