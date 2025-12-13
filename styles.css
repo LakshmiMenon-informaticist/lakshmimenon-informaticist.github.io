@@ -321,12 +321,6 @@ p {
   z-index: 3;
 }
 
-/* Bounce effect on hover */
-.hero-photo:hover {
-  transform: translateY(-16px);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.30);
-}
-
 
 /* Floating keyframes */
 
