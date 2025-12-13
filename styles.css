@@ -276,29 +276,25 @@ p {
   filter: brightness(1.03);
 }
 
-/* --- HERO COLLAGE (true semi-circle layout) --- */
-.hero-collage {
+.hero-collage{
   position: relative;
   width: 560px;
   height: 420px;
 }
 
-/* arc placement */
-.hero-collage .hero-photo:nth-child(1) {
-  transform: translate(300px, 40px);
+/* base positions stored as variables + JS offsets */
+.hero-collage .hero-photo{
+  --tx: 0px;
+  --ty: 0px;
+
+  transform: translate(var(--x), var(--y)) translate(var(--tx), var(--ty));
 }
 
-.hero-collage .hero-photo:nth-child(2) {
-  transform: translate(200px, 0px);
-}
-
-.hero-collage .hero-photo:nth-child(3) {
-  transform: translate(80px, 120px);
-}
-
-.hero-collage .hero-photo:nth-child(4) {
-  transform: translate(220px, 220px);
-}
+/* arc base positions */
+.hero-collage .hero-photo:nth-child(1){ --x: 300px; --y: 40px; }
+.hero-collage .hero-photo:nth-child(2){ --x: 200px; --y: 0px; }
+.hero-collage .hero-photo:nth-child(3){ --x: 80px;  --y: 120px; }
+.hero-collage .hero-photo:nth-child(4){ --x: 220px; --y: 220px; }
 
 
 
