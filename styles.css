@@ -247,13 +247,6 @@ p {
   animation: blinkCursor 0.8s infinite;
 }
 
-/* Right side: floating photos */
-
-.hero-side {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 /* Right side: floating photo cluster */
 
 .hero-side {
