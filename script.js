@@ -116,7 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
       s.x += (targetX - s.x) * SMOOTHING;
       s.y += (targetY - s.y) * SMOOTHING;
 
-      photo.style.transform = `translate(${s.x}px, ${s.y}px)`;
+      photo.style.setProperty("--tx", `${dx}px`);
+      photo.style.setProperty("--ty", `${dy}px`);
+
     });
 
     requestAnimationFrame(animate);
