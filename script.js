@@ -64,6 +64,37 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+const slider = document.querySelector(".hero-slider");
+const track = document.querySelector(".hero-track");
+
+if (slider && track) {
+  const slides = Array.from(track.querySelectorAll("img"));
+  let i = 0;
+  let timer = null;
+
+  const goTo = (index) => {
+    i = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${i * 100}%)`;
+  };
+
+  const start = () => {
+    stop();
+    timer = setInterval(() => goTo(i + 1), 3500); // speed between slides
+  };
+
+  const stop = () => {
+    if (timer) clearInterval(timer);
+    timer = null;
+  };
+
+  slider.addEventListener("mouseenter", stop);
+  slider.addEventListener("mouseleave", start);
+
+  // optional: swipe/drag later if you want
+  start();
+}
+
+
 
 // Reveal timeline items on scroll
 document.addEventListener("DOMContentLoaded", () => {
