@@ -204,12 +204,19 @@ p {
 
 .hero {
   position: relative;
-  padding: 80px 0 72px;
   overflow: hidden;
-  min-height: calc(100vh - 64px);
+
+  /* full screen hero */
+  min-height: 100vh;
+
+  /* center the hero content */
   display: flex;
   align-items: center;
+
+  /* header is absolute, so we give top breathing room */
+  padding: 120px 0 72px;
 }
+
 
 .hero-inner {
   display: grid;
@@ -321,24 +328,6 @@ p {
   0%   { transform: translate(0, 0); }
   50%  { transform: translate(-50px, -50px); }
   100% { transform: translate(-80px, -10px); }
-}
-
-
-
-/* Mobile: stack hero */
-@media (max-width: 768px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-side {
-    margin-top: 24px;
-  }
-
-  .hero-photos {
-    width: 280px;
-    height: 280px;
-  }
 }
 
 
