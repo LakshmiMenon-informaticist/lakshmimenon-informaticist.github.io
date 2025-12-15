@@ -216,6 +216,25 @@ p {
   color: var(--muted);
 }
 
+/* Typed role text (purple accent) */
+.hero-roles #role-typed {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Blinking cursor effect (if your JS adds a cursor span or border) */
+.hero-roles #role-typed::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  background: var(--accent);
+  animation: blinkCursor 1s steps(1) infinite;
+  vertical-align: bottom;
+}
+
+
 .hero-subtitle {
   font-size: 0.98rem;
   max-width: 540px;
